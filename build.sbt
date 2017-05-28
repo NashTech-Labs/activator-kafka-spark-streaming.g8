@@ -1,15 +1,12 @@
-name := """activator-kafka-spark-streaming"""
-
-version := "1.0"
-
-scalaVersion := "2.11.8"
-
-libraryDependencies ++= Seq(
-  "org.apache.kafka" % "kafka_2.11" % "0.10.1.1",
-  "com.fasterxml.jackson.core" % "jackson-databind" % "2.6.5",
-  "org.twitter4j" % "twitter4j-stream" % "4.0.6",
-  "com.typesafe" % "config" % "1.3.1",
-  "org.apache.spark" %% "spark-core" % "2.1.0",
-  "org.apache.spark" %% "spark-streaming" % "2.1.0",
-  "org.apache.spark" % "spark-streaming-kafka-0-10_2.11" % "2.1.0"
-)
+// This build is for this Giter8 template.
+// To test the template run `g8` or `g8Test` from the sbt session.
+// See http://www.foundweekends.org/giter8/testing.html#Using+the+Giter8Plugin for more details.
+lazy val root = (project in file(".")).
+  settings(
+    name := "activator-kafka-spark-streaming",
+    test in Test := {
+      val _ = (g8Test in Test).toTask("").value
+    },
+    scriptedLaunchOpts ++= List("-Xms1024m", "-Xmx1024m", "-XX:ReservedCodeCacheSize=128m", "-XX:MaxPermSize=256m", "-Xss2m", "-Dfile.encoding=UTF-8"),
+    resolvers += Resolver.url("typesafe", url("http://repo.typesafe.com/typesafe/ivy-releases/"))(Resolver.ivyStylePatterns)
+  )
